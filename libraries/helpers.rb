@@ -19,7 +19,7 @@ require 'uri'
 require 'open-uri'
 
 def vagrant_base_uri
-  'https://dl.bintray.com/mitchellh/vagrant/'
+  'https://releases.hashicorp.com/vagrant/'
 end
 
 def vagrant_platform_package(vers = nil)
@@ -41,7 +41,7 @@ end
 def vagrant_sha256sum(vers = nil)
   # fetch the version-specific sha256sum file
   # grep for the platform-specific package name
-  sha256sums = open(URI.join(vagrant_base_uri, "#{vers}_SHA256SUMS?direct"))
+  sha256sums = open(URI.join(vagrant_base_uri, "#{vers}/vagrant_#{vers}_SHA256SUMS?direct"))
   sha256sums.readlines.grep(/#{vagrant_platform_package(vers)}/)[0].split.first
 end
 
